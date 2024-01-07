@@ -1,0 +1,84 @@
+
+# project 'SanGuo.xcodeproj'
+
+#use_frameworks!
+
+install! 'cocoapods', :deterministic_uuids => false
+
+platform :ios, '10.0'
+
+
+def pod_for_gm
+  # 1.GroMoreSDK核心库
+  pod 'Ads-Mediation-CN', :path=>'../SDKs/Ads-Mediation-CN_3.9.0.2/'
+  # 2.GroMore官方适配adapter
+  pod 'ABUAdUnityAdapter', :path=>'../SDKs/ABUAdUnityAdapter_4.3.0.0/'
+  pod 'ABUAdAdmobAdapter', :path=>'../SDKs/ABUAdAdmobAdapter_9.13.0.0/'
+  pod 'ABUAdBaiduAdapter', :path=>'../SDKs/ABUAdBaiduAdapter_5.101.0/'
+  pod 'ABUAdGdtAdapter', :path=>'../SDKs/ABUAdGdtAdapter_4.14.02.0/'
+  pod 'ABUAdSigmobAdapter', :path=>'../SDKs/ABUAdSigmobAdapter_4.6.0.0/'
+  pod 'ABUAdMintegralAdapter', :path=>'../SDKs/ABUAdMintegralAdapter_7.2.8.0.0/'
+  pod 'ABUAdCsjAdapter', :path=>'../SDKs/ABUAdCsjAdapter_4.9.0.6.0/'
+  pod 'ABUAdKlevinAdapter', :path=>'../SDKs/ABUAdKlevinAdapter_2.11.0.211.0/'
+  pod 'ABUVisualDebug', :path=>'../SDKs/ABUVisualDebug_3.9.0.2/'
+
+end
+def pod_for_adn
+  # 穿山甲  按实际情况使用正式或灰度；
+  pod 'Ads-CN','4.9.0.6' # CSJ 正式
+#  pod 'PangleAdSDK-iOS', '4.9.0.5-alpha.1', :subspecs => ['Ads-CN']
+#  pod 'Ads-CN-Beta', '4.9.0.4' # CSJ 灰度
+#  pod 'Ads-CN/Domestic', '4.6.0.7'
+#  pod 'Ads-CN/BUAdSDK', '4.6.0.7'
+  # 优量汇
+  # UnityAds
+  pod 'UnityAds', '4.3.0'
+  # Admob/GoogleAd
+  # pod 'Google-Mobile-Ads-SDK', '9.13.0'
+  # 百度SDK
+  pod 'BaiduMobAdSDK', '5.101'
+  # 广点通/优量汇
+  pod 'GDTMobSDK' ,'4.14.02'
+  # SigmobAd
+  pod 'SigmobAd-iOS', '4.6.0'
+  # 游可赢
+  # pod 'KlevinAdSDK', '2.11.0.211'
+  # pod 'KlevinAdSDK'
+  # MintegralAdSDK 使用时请务必使用cocoapod源
+  pod 'MintegralAdSDK', '7.2.8', :subspecs => [
+    'SplashAd',
+    'InterstitialAd',
+    'NewInterstitialAd',
+    'InterstitialVideoAd',
+    'RewardVideoAd',
+    'NativeAd',
+    'NativeAdvancedAd',
+    'BannerAd',
+    'BidNativeAd',
+    'BidNewInterstitialAd',
+    'BidInterstitialVideoAd',
+    'BidRewardVideoAd'
+  ]
+end
+
+#快手
+def pod_for_kusaiShou
+
+pod 'KSAdSDK', '3.3.29'
+
+end
+
+target 'UnityFramework' do
+  pod_for_gm
+  pod_for_adn
+  pod_for_kusaiShou
+end
+
+
+#post_install do |installer|
+#  installer.pods_project.targets.each do |target|
+#    target.build_configurations.each do |config|
+#      config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+#    end
+#  end
+#end
